@@ -1,0 +1,4 @@
+pyicloud
+vobject
+requests
+lxml
