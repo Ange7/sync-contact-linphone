@@ -184,7 +184,7 @@ class App:
             if self.fields["export_only"].get():
                 self.log.insert(tk.END, f"✅ Export terminé : {export_path.resolve()}\n")
                 self.log.see(tk.END)
-                messagebox.showinfo("Export terminé", f"Fichier : {export_path.resolve()}")
+                self.root.after(0, lambda: messagebox.showinfo("Export terminé", f"Fichier : {export_path.resolve()}"))
                 return
 
             self.log.insert(tk.END, "📤 Import des contacts vers CardDAV...\n")
@@ -198,14 +198,16 @@ class App:
             self.log.insert(tk.END, f"⚠️ {result.get('skipped', 0)} ignorés.\n")
             self.log.insert(tk.END, f"❌ {len(result.get('errors', []))} erreurs.\n")
             self.log.see(tk.END)
-            messagebox.showinfo("Résultat",
-                                f"{result.get('imported', 0)} contacts importés.\n"
-                                f"{result.get('skipped', 0)} ignorés.\n"
-                                f"Erreurs : {len(result.get('errors', []))}")
+            self.root.after(0, lambda: messagebox.showinfo(
+                "Résultat",
+                f"{result.get('imported', 0)} contacts importés.\n"
+                f"{result.get('skipped', 0)} ignorés.\n"
+                f"Erreurs : {len(result.get('errors', []))}"
+            ))
         except Exception as e:
             self.log.insert(tk.END, f"❌ Erreur générale : {str(e)}\n")
             self.log.see(tk.END)
-            messagebox.showerror("Erreur", str(e))
+            self.root.after(0, lambda: messagebox.showerror("Erreur", str(e)))
 
 if __name__ == "__main__":
     root = tk.Tk()
