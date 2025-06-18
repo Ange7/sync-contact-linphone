@@ -98,4 +98,4 @@ Feel free to modify and adapt this for your own setup.
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the GNU GENERAL PUBLIC License.
